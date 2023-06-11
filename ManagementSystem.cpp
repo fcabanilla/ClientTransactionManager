@@ -1,71 +1,79 @@
 #include <iostream>
 #include "ManagementSystem.h"
 
-ManagementSystem::ManagementSystem() {}
-
-void ManagementSystem::loadTransactionsFromFile(const std::string& filename) {
-    // Implement the logic to load transactions from the file
+ManagementSystem::ManagementSystem() : transactionCount(0), clientCount(0) {
+    // No es necesario inicializar 'transactions' y 'clients' aquí
 }
 
-void ManagementSystem::loadClientsFromFile(const std::string& filename) {
-    // Implement the logic to load clients from the file
+Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filename, int& transactionCount) {
+    // Implementa la lógica para cargar transacciones desde el archivo
+    // Actualiza transactionCount con el número de transacciones cargadas
+    // Devuelve el puntero al arreglo de transacciones
+    return transactions;
 }
 
-void ManagementSystem::saveTransactionsToFile(const std::string& filename) {
-    // Implement the logic to write transactions to the file
+Client* ManagementSystem::loadClientsFromFile(const std::string& filename, int& clientCount) {
+    // Implementa la lógica para cargar clientes desde el archivo
+    // Actualiza clientCount con el número de clientes cargados
+    // Devuelve el puntero al arreglo de clientes
+    return clients;
 }
 
-void ManagementSystem::saveClientsToFile(const std::string& filename) {
-    // Implement the logic to write clients to the file
+void ManagementSystem::saveTransactionsToFile(const Transaction* transactions, int transactionCount, const std::string& filename) {
+    // Implementa la lógica para guardar transacciones en el archivo
+}
+
+void ManagementSystem::saveClientsToFile(const Client* clients, int clientCount, const std::string& filename) {
+    // Implementa la lógica para guardar clientes en el archivo
 }
 
 void ManagementSystem::addClient(const Client& client) {
-    // Implement the logic to add a client
+    // Implementa la lógica para agregar un cliente
 }
 
 void ManagementSystem::removeClient(int clientNumber) {
-    // Implement the logic to remove a client
+    // Implementa la lógica para remover un cliente
 }
 
 void ManagementSystem::performExtraction(int clientNumber, int amount) {
-    // Implement the logic to perform an extraction
+    // Implementa la lógica para realizar una extracción
 }
 
 void ManagementSystem::performDeposit(int clientNumber, int amount) {
-    // Implement the logic to perform a deposit
+    // Implementa la lógica para realizar un depósito
 }
 
 Client* ManagementSystem::getClientByNumber(int clientNumber) {
-    // Implement the logic to get a client by their client number
-    return nullptr; // Modify as needed
+    // Implementa la lógica para obtener un cliente por su número
+    return nullptr; // Modifica según sea necesario
 }
 
 std::vector<Client> ManagementSystem::getAllClients() {
-    // Implement the logic to get all clients
+    // Implementa la lógica para obtener todos los clientes
     std::vector<Client> result;
-    return result; // Modify as needed
+    return result; // Modifica según sea necesario
 }
 
 std::vector<Transaction> ManagementSystem::getTransactionsByClient(int clientNumber) {
-    // Implement the logic to get transactions by client
+    // Implementa la lógica para obtener transacciones por cliente
     std::vector<Transaction> result;
-    return result; // Modify as needed
+    return result; // Modifica según sea necesario
 }
 
 std::vector<Transaction> ManagementSystem::getExtractionReportsByPeriod(int months) {
-    // Implement the logic to get extraction reports by a period of months
+    // Implementa la lógica para obtener informes de extracción por período
     std::vector<Transaction> result;
-    return result; // Modify as needed
+    return result; // Modifica según sea necesario
 }
 
 std::vector<Transaction> ManagementSystem::getExtractionReportsByYear(int year) {
-    // Implement the logic to get extraction reports by year
+    // Implementa la lógica para obtener informes de extracción por año
     std::vector<Transaction> result;
-    return result; // Modify as needed
+    return result; // Modifica según sea necesario
 }
 
 std::vector<Transaction> ManagementSystem::getTotalExtractionReports() {
-    // Implement the logic to get total extraction reports
+    // Implementa la lógica para obtener todos los informes de extracción
     std::vector<Transaction> result;
-    return result; // Modify as needed
+    return result; // Modifica según sea necesario
 }

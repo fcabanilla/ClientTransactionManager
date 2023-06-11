@@ -3,7 +3,7 @@
 //
 
 #include "Transaction.h"
-
+Transaction::Transaction() = default;
 Transaction::Transaction(int transactionNumber, int amount, char type, int day, int month, int year)
         : transactionNumber(transactionNumber), amount(amount), type(type), day(day), month(month), year(year) {}
 

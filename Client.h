@@ -16,6 +16,7 @@ private:
     std::string status;
 
 public:
+    Client();
     Client(int clientNumber, std::string  name, std::string  lastName, std::string  type, int year, std::string  status);
 
     // Getters and setters

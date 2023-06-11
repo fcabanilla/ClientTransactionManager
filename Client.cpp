@@ -6,6 +6,7 @@
 
 #include <utility>
 
+Client::Client() = default;
 Client::Client(int clientNumber, std::string  name, std::string  lastName, std::string  type, int year, std::string  status):
         clientNumber(clientNumber),
         name(std::move(name)),

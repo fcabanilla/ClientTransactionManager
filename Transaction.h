@@ -14,6 +14,7 @@ private:
     int year;
 
 public:
+    Transaction();
     Transaction(int transactionNumber, int amount, char type, int day, int month, int year);
 
     // Getters and setters
