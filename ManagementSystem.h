@@ -6,24 +6,29 @@
 #include "Transaction.h"
 #include "Client.h"
 
+#define MAX_CLIENTS 100
+#define MAX_TRANSACTIONS 1000
+
 class ManagementSystem {
 private:
-    std::vector<Transaction> transactions;
-    std::vector<Client> clients;
+    Transaction transactions[MAX_TRANSACTIONS];
+    Client clients[MAX_CLIENTS];
+    int numTransactions;
+    int numClients;
 
 public:
     ManagementSystem();
 
-    // loadTransactionsFromFile deberia retornar un arreglo de transacciones y no void.
-    void loadTransactionsFromFile(const std::string& filename);
+    // loadTransactionsFromFile debería desarrollar un arreglo de transacciones y no void.
+    int loadTransactionsFromFile(const std::string& filename);
 
-    // loadClientsFromFile deberia retornar un arreglo de clientes y no void.
-    void loadClientsFromFile(const std::string& filename);
+    // loadClientsFromFile debería desarrollar un arreglo de clientes y no void.
+    int loadClientsFromFile(const std::string& filename);
 
-    // Acá lo que deberíamos hacer es recibir un arreglo de transacciones y el nombre del archivo a guardar.
+    // Aquí lo que debemos hacer es recibir un arreglo de transacciones y el nombre del archivo a guardar.
     void saveTransactionsToFile(const std::string& filename);
 
-    // Acá lo que deberíamos hacer es recibir un arreglo de clientes y el nombre del archivo a guardar.
+    // Aquí lo que debemos hacer es recibir un arreglo de clientes y el nombre del archivo a guardar.
     void saveClientsToFile(const std::string& filename);
 
     void addClient(const Client& client);
