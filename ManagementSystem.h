@@ -12,24 +12,24 @@
 class ManagementSystem {
 private:
     Transaction transactions[MAX_TRANSACTIONS];
+    int transactionCount;
     Client clients[MAX_CLIENTS];
-    int numTransactions;
-    int numClients;
+    int clientCount;
 
 public:
     ManagementSystem();
 
-    // loadTransactionsFromFile debería desarrollar un arreglo de transacciones y no void.
-    int loadTransactionsFromFile(const std::string& filename);
+    // loadTransactionsFromFile debería retornar un arreglo de transacciones y no void.
+    Transaction* loadTransactionsFromFile(const std::string& filename, int& transactionCount);
 
-    // loadClientsFromFile debería desarrollar un arreglo de clientes y no void.
-    int loadClientsFromFile(const std::string& filename);
+    // loadClientsFromFile debería retornar un arreglo de clientes y no void.
+    Client* loadClientsFromFile(const std::string& filename, int& clientCount);
 
-    // Aquí lo que debemos hacer es recibir un arreglo de transacciones y el nombre del archivo a guardar.
-    void saveTransactionsToFile(const std::string& filename);
+    // Lo que debemos hacer es recibir un arreglo de transacciones y el nombre del archivo a guardar.
+    void saveTransactionsToFile(const Transaction* transactions, int transactionCount, const std::string& filename);
 
-    // Aquí lo que debemos hacer es recibir un arreglo de clientes y el nombre del archivo a guardar.
-    void saveClientsToFile(const std::string& filename);
+    // Lo que debemos hacer es recibir un arreglo de clientes y el nombre del archivo a guardar.
+    void saveClientsToFile(const Client* clients, int clientCount, const std::string& filename);
 
     void addClient(const Client& client);
     void removeClient(int clientNumber);
