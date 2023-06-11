@@ -54,7 +54,7 @@ void showExtractionAndDepositReports(ManagementSystem& system) {
 void consultations(ManagementSystem& system) {
     int option;
     do {
-        cout << "1. Consultas \t> Cliente por número de cliente" << endl;
+        cout << "1. Consultas \t> \"Cliente\" por número de cliente" << endl;
         cout << "2. Consultas \t> Todos los clientes" << endl;
         cout << "3. Consultas \t> Transacciones por cliente" << endl;
         cout << "4. Consultas \t> Informes de extracciones y depósitos" << endl;
