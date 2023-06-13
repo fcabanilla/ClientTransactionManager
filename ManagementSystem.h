@@ -67,7 +67,7 @@ public:
 
     vector<Transaction> getTotalExtractionReports();
 
-    static void showAllTransactions(Transaction* transactions, int transactionCount);
+    void showAllTransactions(Transaction* transactions, int transactionCount);
     void showAllClients(Client* clients, int clientCount);
 
     void showTransaction(Transaction transaction);

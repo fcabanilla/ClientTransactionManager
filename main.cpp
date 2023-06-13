@@ -12,8 +12,15 @@ using namespace std;
 void addClient() {
     ManagementSystem ms;
     int transactionCount = 0;
-    ms.showAllTransactions(ms.loadTransactionsFromFile("../transacciones.txt", transactionCount), transactionCount);
-    // Ahora puedes usar transactions y transactionCount
+    static Transaction transactions[MAX_TRANSACTIONS];
+    Transaction* loadedTransactions = ms.loadTransactionsFromFile("../transacciones.txt", transactionCount);
+
+    if (loadedTransactions != nullptr) {
+        for (int i = 0; i < transactionCount; i++) {
+            transactions[i] = loadedTransactions[i];
+        }
+        ms.showAllTransactions(transactions, transactionCount);
+    }
 }
 
 void modifyData(ManagementSystem& system) {
