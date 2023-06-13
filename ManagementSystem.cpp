@@ -52,13 +52,7 @@ Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filen
         transactions[transactionCount].setMonth(month);
         transactions[transactionCount].setYear(year);
 
-
-        cout << "Transaction number:  " << transactions[transactionCount].getTransactionNumber() << endl;
-        cout << "Amount: " << transactions[transactionCount].getAmount() << endl;
-        cout << "Type: " << transactions[transactionCount].getType() << endl;
-        cout << "Day: " << transactions[transactionCount].getDay() << endl;
-        cout << "Month: " << transactions[transactionCount].getMonth() << endl;
-        cout << "Year: " << transactions[transactionCount].getYear() << endl;
+        showAllTransactions(transactions, transactionCount);
 
         transactionCount++;
     }
@@ -177,4 +171,13 @@ int ManagementSystem::getClientCount() const {
 
 void ManagementSystem::setClientCount(int clientCount) {
     ManagementSystem::clientCount = clientCount;
+}
+
+void ManagementSystem::showAllTransactions(Transaction *transactions, int transactionCount) {
+    cout << "Transaction number:  " << transactions[transactionCount].getTransactionNumber() << endl;
+    cout << "Amount: " << transactions[transactionCount].getAmount() << endl;
+    cout << "Type: " << transactions[transactionCount].getType() << endl;
+    cout << "Day: " << transactions[transactionCount].getDay() << endl;
+    cout << "Month: " << transactions[transactionCount].getMonth() << endl;
+    cout << "Year: " << transactions[transactionCount].getYear() << endl;
 }

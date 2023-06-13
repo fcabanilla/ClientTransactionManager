@@ -36,7 +36,7 @@ public:
     ManagementSystem();
 
     // loadTransactionsFromFile debería retornar un arreglo de transacciones y no void.
-    static Transaction *loadTransactionsFromFile(const string &filename, int &transactionCount);
+    Transaction *loadTransactionsFromFile(const string &filename, int &transactionCount);
 
     // loadClientsFromFile debería retornar un arreglo de clientes y no void.
     Client *loadClientsFromFile(const string &filename, int &clientCount);
@@ -66,6 +66,12 @@ public:
     vector<Transaction> getExtractionReportsByYear(int year);
 
     vector<Transaction> getTotalExtractionReports();
+
+    static void showAllTransactions(Transaction* transactions, int transactionCount);
+    void showAllClients(Client* clients, int clientCount);
+
+    void showTransaction(Transaction transaction);
+    void showClient(Client client);
 
 };
 
