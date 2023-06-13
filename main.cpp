@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+#include <windows.h>
 #include "ManagementSystem.h"
 
 #include "Transaction.h"
@@ -9,7 +10,10 @@
 using namespace std;
 //ManagementSystem ms;
 
-void addClient() {
+
+//*********************************************
+// Tests para probar las funciones de ManagementSystem
+void testLoadTransactionFromFile() {
     ManagementSystem ms;
     int transactionCount = 0;
     static Transaction transactions[MAX_TRANSACTIONS];
@@ -23,6 +27,27 @@ void addClient() {
     }
 }
 
+void testLoadClientsFromFile() {
+    //TODO: Implementar
+    // Aquí iría el código para probar la función loadClientsFromFile.
+    // La función debería retornar un arreglo de clientes.
+    // El arreglo de clientes debería ser almacenado en la variable clients.
+    // La variable clientCount debería almacenar la cantidad de clientes que se cargaron.
+    // Al final de la función debería llamarse a ms.showAllClients(clients, clientCount);
+}
+//*********************************************
+
+#include <windows.h>
+
+void clearScreen() {
+    cout << "\x1B[2J\x1B[H";
+}
+
+
+
+void addClient() {
+
+}
 void modifyData(ManagementSystem& system) {
     cout << "Ejecutando: Modificar datos..." << endl;
     // Aquí iría el código para modificar los datos de un cliente.
@@ -61,6 +86,7 @@ void showExtractionAndDepositReports(ManagementSystem& system) {
 // Esta función maneja el submenú para las consultas.
 void consultations(ManagementSystem& system) {
     int option;
+    clearScreen();
     do {
         cout << "1. Consultas \t> \"Cliente\" por número de cliente" << endl;
         cout << "2. Consultas \t> Todos los clientes" << endl;
@@ -89,6 +115,30 @@ void consultations(ManagementSystem& system) {
                 cout << "Opción incorrecta" << endl;
                 break;
         }
+        clearScreen();
+    } while (option != 5);
+}
+
+void debugMenu(){
+    int option;
+    clearScreen();
+    do {
+        cout << "1. Imprimir todas las Transacciones" << endl;
+        cout << "2. Imprimir todos los Clientes" << endl;
+        cin >> option;
+
+        switch (option) {
+            case 1:
+                testLoadTransactionFromFile();
+                break;
+            case 2:
+                testLoadClientsFromFile();
+                break;
+            default:
+                cout << "Opción incorrecta" << endl;
+                break;
+        }
+    clearScreen();
     } while (option != 5);
 }
 
@@ -103,6 +153,7 @@ int main() {
         cout << "3. Realizar Extracción" << endl;
         cout << "4. Realizar Depósito" << endl;
         cout << "5. Consultas" << endl;
+        cout << "0. Menu Debug" << endl; // Debug menu
         cout << "6. Salir" << endl;
         cin >> option;
 
@@ -125,11 +176,14 @@ int main() {
             case 6:
                 cout << "Exiting..." << endl;
                 break;
+            case 0: // Debug menu
+                debugMenu();
+                break;
             default:
                 cout << "Incorrect option" << endl;
                 break;
         }
-
+        clearScreen();
     } while (option != 6);
 
     return 0;

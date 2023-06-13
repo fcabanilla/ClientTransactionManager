@@ -160,18 +160,18 @@ void ManagementSystem::setClientCount(int clientCount) {
     ManagementSystem::clientCount = clientCount;
 }
 void ManagementSystem::showTransaction(Transaction transaction) {
-    cout << "Transaction number:  " << transaction.getTransactionNumber() << endl;
-    cout << "Amount: " << transaction.getAmount() << endl;
-    cout << "Type: " << transaction.getType() << endl;
-    cout << "Day: " << transaction.getDay() << endl;
-    cout << "Month: " << transaction.getMonth() << endl;
-    cout << "Year: " << transaction.getYear() << endl;
+    cout << "# Transaction number:  " << transaction.getTransactionNumber() << "\t#"<<endl;
+    cout << "# Amount: " << transaction.getAmount() << "\t\t\t#"<<endl;
+    cout << "# Type: " << transaction.getType() << "\t\t\t#"<<endl;
+    cout << "# Day: " << transaction.getDay() << "\t\t\t#"<<endl;
+    cout << "# Month: " << transaction.getMonth() << "\t\t\t#"<<endl;
+    cout << "# Year: " << transaction.getYear() << "\t\t\t#"<<endl;
 }
 
 void ManagementSystem::showAllTransactions(Transaction *transactions, int transactionCount) {
     for (int i = 0; i < transactionCount; i++) {
-        cout << "##############################################" << endl;
+        cout << "#################################" << endl;
         showTransaction(transactions[i]);
-        cout << "##############################################" << endl << endl;
+        cout << "#################################" << endl << endl;
     }
 }
