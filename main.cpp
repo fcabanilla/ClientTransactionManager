@@ -6,12 +6,16 @@
 #include "Client.h"
 
 using namespace std;
+ManagementSystem ms;
 
 // Las siguientes funciones son "placeholders" para las operaciones reales.
 // Cada una imprime un mensaje en la pantalla y luego vuelve al menú.
 
-void addClient(ManagementSystem& system) {
-    cout << "Ejecutando: Agregar cliente..." << endl;
+void addClient() {
+    //cout << "Ejecutando: Agregar cliente..." << endl;
+    cout << "Leyendo transaccion desde archivo transacciones.txt" << endl;
+    int transactionCount = 0;
+    ms.loadTransactionsFromFile("transacciones.txt", transactionCount);
     // Aquí iría el código para agregar un cliente.
 }
 

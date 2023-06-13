@@ -1,29 +1,95 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#define
+
 #include "ManagementSystem.h"
+using namespace std;
+ManagementSystem ms;
 
 ManagementSystem::ManagementSystem() : transactionCount(0), clientCount(0) {
     // No es necesario inicializar 'transactions' y 'clients' aquí
 }
 
-Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filename, int& transactionCount) {
-    // Implementa la lógica para cargar transacciones desde el archivo
-    // Actualiza transactionCount con el número de transacciones cargadas
-    // Devuelve el puntero al arreglo de transacciones
+// Asume que MAX_TRANSACTIONS y MAX_CLIENTS son constantes que definen el número máximo de transacciones y clientes
+
+Transaction* ManagementSystem::loadTransactionsFromFile(const string& filename, int& transactionCount) {
+    ifstream file(filename);
+    if (!file) {
+        cerr << "No se pudo abrir el archivo de transacciones: " << filename << endl;
+        return nullptr;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        istringstream iss(line);
+        // VARIABLES NECESARIAS PARA CREAR UNA TRANSACCIÓN
+        int id, amount, day, month, year;
+        char type;
+
+        // Línea erronea al leer la línea de transacciones
+        if (!(iss >> id >> amount >> type >> day >> month >> year)) {
+            cerr << "Error al leer la línea de transacciones: " << line << endl;
+            continue;
+        }
+
+        // Se ha alcanzado el número máximo de transacciones. Ignorando las transacciones adicionales.
+        if (transactionCount >= MAX_TRANSACTIONS) {
+            cerr << "Se ha alcanzado el número máximo de transacciones. Ignorando las transacciones adicionales." << endl;
+            break;
+        }
+
+        // Agregando la transacción al arreglo de transacciones
+        cout << "id" << id << endl;
+        cout << "type" << type << endl;
+        cout << "amount" << amount << endl;
+        cout << "day" << day << endl;
+        cout << "month" << month << endl;
+        cout << "year" << year << endl;
+        cout << "transactionCount" << transactionCount << endl;
+
+        transactions[transactionCount] = Transaction(id, amount, type, day, month, year);
+        transactionCount++;
+    }
+
     return transactions;
 }
 
-Client* ManagementSystem::loadClientsFromFile(const std::string& filename, int& clientCount) {
-    // Implementa la lógica para cargar clientes desde el archivo
-    // Actualiza clientCount con el número de clientes cargados
-    // Devuelve el puntero al arreglo de clientes
+Client* ManagementSystem::loadClientsFromFile(const string& filename, int& clientCount) {
+    ifstream file(filename);
+    if (!file) {
+        cerr << "No se pudo abrir el archivo de clientes: " << filename << endl;
+        return nullptr;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        istringstream iss(line);
+        int id, year;
+        string name, surname, type, status;
+
+        if (!(iss >> id >> name >> surname >> type >> year >> status)) {
+            cerr << "Error al leer la línea de clientes: " << line << endl;
+            continue;
+        }
+
+        if (clientCount >= MAX_CLIENTS) {
+            cerr << "Se ha alcanzado el número máximo de clientes. Ignorando los clientes adicionales." << endl;
+            break;
+        }
+
+        clients[clientCount] = Client(id, name, surname, type, year, status);
+        clientCount++;
+    }
+
     return clients;
 }
 
-void ManagementSystem::saveTransactionsToFile(const Transaction* transactions, int transactionCount, const std::string& filename) {
+void ManagementSystem::saveTransactionsToFile(const Transaction* transactions, int transactionCount, const string& filename) {
     // Implementa la lógica para guardar transacciones en el archivo
 }
 
-void ManagementSystem::saveClientsToFile(const Client* clients, int clientCount, const std::string& filename) {
+void ManagementSystem::saveClientsToFile(const Client* clients, int clientCount, const string& filename) {
     // Implementa la lógica para guardar clientes en el archivo
 }
 
@@ -48,32 +114,56 @@ Client* ManagementSystem::getClientByNumber(int clientNumber) {
     return nullptr; // Modifica según sea necesario
 }
 
-std::vector<Client> ManagementSystem::getAllClients() {
+vector<Client> ManagementSystem::getAllClients() {
     // Implementa la lógica para obtener todos los clientes
-    std::vector<Client> result;
+    vector<Client> result;
     return result; // Modifica según sea necesario
 }
 
-std::vector<Transaction> ManagementSystem::getTransactionsByClient(int clientNumber) {
+vector<Transaction> ManagementSystem::getTransactionsByClient(int clientNumber) {
     // Implementa la lógica para obtener transacciones por cliente
-    std::vector<Transaction> result;
+    vector<Transaction> result;
     return result; // Modifica según sea necesario
 }
 
-std::vector<Transaction> ManagementSystem::getExtractionReportsByPeriod(int months) {
+vector<Transaction> ManagementSystem::getExtractionReportsByPeriod(int months) {
     // Implementa la lógica para obtener informes de extracción por período
-    std::vector<Transaction> result;
+    vector<Transaction> result;
     return result; // Modifica según sea necesario
 }
 
-std::vector<Transaction> ManagementSystem::getExtractionReportsByYear(int year) {
+vector<Transaction> ManagementSystem::getExtractionReportsByYear(int year) {
     // Implementa la lógica para obtener informes de extracción por año
-    std::vector<Transaction> result;
+    vector<Transaction> result;
     return result; // Modifica según sea necesario
 }
 
-std::vector<Transaction> ManagementSystem::getTotalExtractionReports() {
+vector<Transaction> ManagementSystem::getTotalExtractionReports() {
     // Implementa la lógica para obtener todos los informes de extracción
-    std::vector<Transaction> result;
+    vector<Transaction> result;
     return result; // Modifica según sea necesario
+}
+
+int ManagementSystem::getTransactionCount() const {
+    return transactionCount;
+}
+
+void ManagementSystem::setTransactionCount(int transactionCount) {
+    ManagementSystem::transactionCount = transactionCount;
+}
+
+const Transaction *ManagementSystem::getTransactions() const {
+    return transactions;
+}
+
+const Client *ManagementSystem::getClients() const {
+    return clients;
+}
+
+int ManagementSystem::getClientCount() const {
+    return clientCount;
+}
+
+void ManagementSystem::setClientCount(int clientCount) {
+    ManagementSystem::clientCount = clientCount;
 }

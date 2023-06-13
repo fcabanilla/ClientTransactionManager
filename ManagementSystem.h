@@ -6,30 +6,46 @@
 #include "Transaction.h"
 #include "Client.h"
 
+using namespace std;
+
 #define MAX_CLIENTS 100
 #define MAX_TRANSACTIONS 1000
 
 class ManagementSystem {
 private:
     Transaction transactions[MAX_TRANSACTIONS];
-    int transactionCount;
+public:
+    const Transaction *getTransactions() const;
+
+    const Client *getClients() const;
+
+    int getClientCount() const;
+
+    void setClientCount(int clientCount);
+
+private:
     Client clients[MAX_CLIENTS];
     int clientCount;
+    int transactionCount;
+public:
+    int getTransactionCount() const;
+
+    void setTransactionCount(int transactionCount);
 
 public:
     ManagementSystem();
 
     // loadTransactionsFromFile debería retornar un arreglo de transacciones y no void.
-    Transaction* loadTransactionsFromFile(const std::string& filename, int& transactionCount);
+    static Transaction* loadTransactionsFromFile(const string& filename, int& transactionCount);
 
     // loadClientsFromFile debería retornar un arreglo de clientes y no void.
-    Client* loadClientsFromFile(const std::string& filename, int& clientCount);
+    Client* loadClientsFromFile(const string& filename, int& clientCount);
 
     // Lo que debemos hacer es recibir un arreglo de transacciones y el nombre del archivo a guardar.
-    void saveTransactionsToFile(const Transaction* transactions, int transactionCount, const std::string& filename);
+    void saveTransactionsToFile(const Transaction* transactions, int transactionCount, const string& filename);
 
     // Lo que debemos hacer es recibir un arreglo de clientes y el nombre del archivo a guardar.
-    void saveClientsToFile(const Client* clients, int clientCount, const std::string& filename);
+    void saveClientsToFile(const Client* clients, int clientCount, const string& filename);
 
     void addClient(const Client& client);
     void removeClient(int clientNumber);
@@ -38,12 +54,13 @@ public:
     void performDeposit(int clientNumber, int amount);
 
     Client* getClientByNumber(int clientNumber);
-    std::vector<Client> getAllClients();
-    std::vector<Transaction> getTransactionsByClient(int clientNumber);
+    vector<Client> getAllClients();
+    vector<Transaction> getTransactionsByClient(int clientNumber);
 
-    std::vector<Transaction> getExtractionReportsByPeriod(int months);
-    std::vector<Transaction> getExtractionReportsByYear(int year);
-    std::vector<Transaction> getTotalExtractionReports();
+    vector<Transaction> getExtractionReportsByPeriod(int months);
+    vector<Transaction> getExtractionReportsByYear(int year);
+    vector<Transaction> getTotalExtractionReports();
+
 };
 
 #endif // MANAGEMENTSYSTEM_H
