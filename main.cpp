@@ -2,18 +2,17 @@
 #include <string>
 
 #include "ManagementSystem.h"
+
 #include "Transaction.h"
 #include "Client.h"
 
 using namespace std;
-ManagementSystem ms;
-
-// Las siguientes funciones son "placeholders" para las operaciones reales.
-// Cada una imprime un mensaje en la pantalla y luego vuelve al menú.
+//ManagementSystem ms;
 
 void addClient() {
-    int transactionCount;
-    Transaction* transactions = ms.loadTransactionsFromFile("transacciones.txt", transactionCount);
+    ManagementSystem ms;
+    int transactionCount = 0;
+    ms.showAllTransactions(ms.loadTransactionsFromFile("../transacciones.txt", transactionCount), transactionCount);
     // Ahora puedes usar transactions y transactionCount
 }
 

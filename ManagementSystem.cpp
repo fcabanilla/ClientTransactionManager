@@ -13,7 +13,6 @@ ManagementSystem::ManagementSystem() : transactionCount(0), clientCount(0) {
 Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filename, int& transactionCount) {
     static Transaction transactions[MAX_TRANSACTIONS];
     transactionCount = 0;
-/*
     ifstream file(filename);
     if (!file) {
         cerr << "No se pudo abrir el archivo: " << filename << endl;
@@ -26,24 +25,14 @@ Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filen
     }
 
     string line;
-*/
-    while (transactionCount < 1) {
+    while (getline(file, line)) {
         int transactionNumber, amount, day, month, year;
         char type;
-        /*
+
         istringstream iss(line);
         if (!(iss >> transactionNumber >> amount >> type >> day >> month >> year)) {
             break; // Error en el formato del archivo
         }
-        */
-        // inicializa las variables transactionNumber, amount, day, month, year y type con los valores de ejemplo;
-        // por ejemplo, si la línea es "1 1000 D 1 1 2020", entonces:
-        transactionNumber = 1;
-        amount = 1000;
-        type = 'D';
-        day = 1;
-        month = 1;
-        year = 2020;
 
         transactions[transactionCount].setTransactionNumber(transactionNumber);
         transactions[transactionCount].setAmount(amount);
@@ -51,8 +40,6 @@ Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filen
         transactions[transactionCount].setDay(day);
         transactions[transactionCount].setMonth(month);
         transactions[transactionCount].setYear(year);
-
-        showAllTransactions(transactions, transactionCount);
 
         transactionCount++;
     }
