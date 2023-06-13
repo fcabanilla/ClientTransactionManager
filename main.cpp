@@ -12,11 +12,9 @@ ManagementSystem ms;
 // Cada una imprime un mensaje en la pantalla y luego vuelve al menú.
 
 void addClient() {
-    //cout << "Ejecutando: Agregar cliente..." << endl;
-    cout << "Leyendo transaccion desde archivo transacciones.txt" << endl;
-    int transactionCount = 0;
-    ms.loadTransactionsFromFile("transacciones.txt", transactionCount);
-    // Aquí iría el código para agregar un cliente.
+    int transactionCount;
+    Transaction* transactions = ms.loadTransactionsFromFile("transacciones.txt", transactionCount);
+    // Ahora puedes usar transactions y transactionCount
 }
 
 void modifyData(ManagementSystem& system) {
@@ -104,7 +102,7 @@ int main() {
 
         switch (option) {
             case 1:
-                addClient(system);
+                addClient();
                 break;
             case 2:
                 modifyData(system);

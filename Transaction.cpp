@@ -30,3 +30,27 @@ int Transaction::getMonth() const {
 int Transaction::getYear() const {
     return year;
 }
+
+void Transaction::setTransactionNumber(int transactionNumber) {
+    Transaction::transactionNumber = transactionNumber;
+}
+
+void Transaction::setAmount(int amount) {
+    Transaction::amount = amount;
+}
+
+void Transaction::setType(char type) {
+    Transaction::type = type;
+}
+
+void Transaction::setDay(int day) {
+    Transaction::day = day;
+}
+
+void Transaction::setMonth(int month) {
+    Transaction::month = month;
+}
+
+void Transaction::setYear(int year) {
+    Transaction::year = year;
+}

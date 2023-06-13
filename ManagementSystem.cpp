@@ -1,57 +1,68 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#define
 
 #include "ManagementSystem.h"
 using namespace std;
-ManagementSystem ms;
 
 ManagementSystem::ManagementSystem() : transactionCount(0), clientCount(0) {
     // No es necesario inicializar 'transactions' y 'clients' aquí
 }
-
 // Asume que MAX_TRANSACTIONS y MAX_CLIENTS son constantes que definen el número máximo de transacciones y clientes
 
-Transaction* ManagementSystem::loadTransactionsFromFile(const string& filename, int& transactionCount) {
+Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filename, int& transactionCount) {
+    static Transaction transactions[MAX_TRANSACTIONS];
+    transactionCount = 0;
+/*
     ifstream file(filename);
     if (!file) {
-        cerr << "No se pudo abrir el archivo de transacciones: " << filename << endl;
-        return nullptr;
+        cerr << "No se pudo abrir el archivo: " << filename << endl;
+        cerr << "Se retornará un arreglo vacío de transacciones." << endl;
+        cerr << "Verifica que el archivo exista y que tenga el formato correcto." << endl;
+        cerr << "El formato correcto es: " << endl;
+        cerr << "Número de transacción, monto, tipo, día, mes, año" << endl;
+        cerr << "Ejemplo: 1 1000 D 1 1 2020" << endl;
+        return transactions;
     }
 
     string line;
-    while (getline(file, line)) {
-        istringstream iss(line);
-        // VARIABLES NECESARIAS PARA CREAR UNA TRANSACCIÓN
-        int id, amount, day, month, year;
+*/
+    while (transactionCount < 1) {
+        int transactionNumber, amount, day, month, year;
         char type;
-
-        // Línea erronea al leer la línea de transacciones
-        if (!(iss >> id >> amount >> type >> day >> month >> year)) {
-            cerr << "Error al leer la línea de transacciones: " << line << endl;
-            continue;
+        /*
+        istringstream iss(line);
+        if (!(iss >> transactionNumber >> amount >> type >> day >> month >> year)) {
+            break; // Error en el formato del archivo
         }
+        */
+        // inicializa las variables transactionNumber, amount, day, month, year y type con los valores de ejemplo;
+        // por ejemplo, si la línea es "1 1000 D 1 1 2020", entonces:
+        transactionNumber = 1;
+        amount = 1000;
+        type = 'D';
+        day = 1;
+        month = 1;
+        year = 2020;
 
-        // Se ha alcanzado el número máximo de transacciones. Ignorando las transacciones adicionales.
-        if (transactionCount >= MAX_TRANSACTIONS) {
-            cerr << "Se ha alcanzado el número máximo de transacciones. Ignorando las transacciones adicionales." << endl;
-            break;
-        }
+        transactions[transactionCount].setTransactionNumber(transactionNumber);
+        transactions[transactionCount].setAmount(amount);
+        transactions[transactionCount].setType(type);
+        transactions[transactionCount].setDay(day);
+        transactions[transactionCount].setMonth(month);
+        transactions[transactionCount].setYear(year);
 
-        // Agregando la transacción al arreglo de transacciones
-        cout << "id" << id << endl;
-        cout << "type" << type << endl;
-        cout << "amount" << amount << endl;
-        cout << "day" << day << endl;
-        cout << "month" << month << endl;
-        cout << "year" << year << endl;
-        cout << "transactionCount" << transactionCount << endl;
 
-        transactions[transactionCount] = Transaction(id, amount, type, day, month, year);
+        cout << "Transaction number:  " << transactions[transactionCount].getTransactionNumber() << endl;
+        cout << "Amount: " << transactions[transactionCount].getAmount() << endl;
+        cout << "Type: " << transactions[transactionCount].getType() << endl;
+        cout << "Day: " << transactions[transactionCount].getDay() << endl;
+        cout << "Month: " << transactions[transactionCount].getMonth() << endl;
+        cout << "Year: " << transactions[transactionCount].getYear() << endl;
+
         transactionCount++;
     }
-
+    //file.close();
     return transactions;
 }
 

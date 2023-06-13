@@ -24,6 +24,18 @@ public:
     int getDay() const;
     int getMonth() const;
     int getYear() const;
+
+    void setTransactionNumber(int transactionNumber);
+
+    void setAmount(int amount);
+
+    void setType(char type);
+
+    void setDay(int day);
+
+    void setMonth(int month);
+
+    void setYear(int year);
 };
 
 #endif // TRANSACTION_H

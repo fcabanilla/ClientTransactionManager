@@ -36,29 +36,35 @@ public:
     ManagementSystem();
 
     // loadTransactionsFromFile debería retornar un arreglo de transacciones y no void.
-    static Transaction* loadTransactionsFromFile(const string& filename, int& transactionCount);
+    static Transaction *loadTransactionsFromFile(const string &filename, int &transactionCount);
 
     // loadClientsFromFile debería retornar un arreglo de clientes y no void.
-    Client* loadClientsFromFile(const string& filename, int& clientCount);
+    Client *loadClientsFromFile(const string &filename, int &clientCount);
 
     // Lo que debemos hacer es recibir un arreglo de transacciones y el nombre del archivo a guardar.
-    void saveTransactionsToFile(const Transaction* transactions, int transactionCount, const string& filename);
+    void saveTransactionsToFile(const Transaction *transactions, int transactionCount, const string &filename);
 
     // Lo que debemos hacer es recibir un arreglo de clientes y el nombre del archivo a guardar.
-    void saveClientsToFile(const Client* clients, int clientCount, const string& filename);
+    void saveClientsToFile(const Client *clients, int clientCount, const string &filename);
 
-    void addClient(const Client& client);
+    void addClient(const Client &client);
+
     void removeClient(int clientNumber);
 
     void performExtraction(int clientNumber, int amount);
+
     void performDeposit(int clientNumber, int amount);
 
-    Client* getClientByNumber(int clientNumber);
+    Client *getClientByNumber(int clientNumber);
+
     vector<Client> getAllClients();
+
     vector<Transaction> getTransactionsByClient(int clientNumber);
 
     vector<Transaction> getExtractionReportsByPeriod(int months);
+
     vector<Transaction> getExtractionReportsByYear(int year);
+
     vector<Transaction> getTotalExtractionReports();
 
 };
