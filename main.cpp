@@ -28,12 +28,17 @@ void testLoadTransactionFromFile() {
 }
 
 void testLoadClientsFromFile() {
-    //TODO: Implementar
-    // Aquí iría el código para probar la función loadClientsFromFile.
-    // La función debería retornar un arreglo de clientes.
-    // El arreglo de clientes debería ser almacenado en la variable clients.
-    // La variable clientCount debería almacenar la cantidad de clientes que se cargaron.
-    // Al final de la función debería llamarse a ms.showAllClients(clients, clientCount);
+    ManagementSystem ms;
+    int clientCount = 0;
+    static Client clients[MAX_CLIENTS];
+    Client* loadedClients = ms.loadClientsFromFile("../clientes.txt",clientCount);
+
+    if (loadedClients != nullptr){
+        for (int i=0 ; i < clientCount ; i++){
+            clients[i] = loadedClients[i];
+        }
+        ms.showAllClients(clients,clientCount);
+    }
 }
 //*********************************************
 
@@ -43,11 +48,10 @@ void clearScreen() {
     cout << "\x1B[2J\x1B[H";
 }
 
-
-
 void addClient() {
 
 }
+
 void modifyData(ManagementSystem& system) {
     cout << "Ejecutando: Modificar datos..." << endl;
     // Aquí iría el código para modificar los datos de un cliente.
