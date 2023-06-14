@@ -12,10 +12,6 @@ void saveClientToFile(const Client &client, string filename);
 
 using namespace std;
 
-ManagementSystem::ManagementSystem() {
-    clientCount = 0;
-    transactionCount = 0;
-}
 // Asume que MAX_TRANSACTIONS y MAX_CLIENTS son constantes que definen el número máximo de transacciones y clientes
 
 /*
@@ -23,7 +19,6 @@ ManagementSystem::ManagementSystem() {
  */
 
 Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filename, int& transactionCount) {
-    static Transaction transactions[MAX_TRANSACTIONS];
     transactionCount = 0;
     ifstream file(filename);
     if (!file) {
@@ -193,6 +188,30 @@ void ManagementSystem::showAllClients(Client *clients, int clientCount, ClientSt
                 showClient(clients[i]);
         }
     }
+}
+
+const Transaction *ManagementSystem::getTransactions() const {
+    return transactions;
+}
+
+const Client *ManagementSystem::getClients() const {
+    return clients;
+}
+
+int ManagementSystem::getClientCount() const {
+    return clientCount;
+}
+
+void ManagementSystem::setClientCount(int clientCount) {
+    ManagementSystem::clientCount = clientCount;
+}
+
+int ManagementSystem::getTransactionCount() const {
+    return transactionCount;
+}
+
+void ManagementSystem::setTransactionCount(int transactionCount) {
+    ManagementSystem::transactionCount = transactionCount;
 }
 
 
