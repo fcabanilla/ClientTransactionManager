@@ -14,6 +14,7 @@ private:
     string name;
     string lastName;
     string accountType;
+    int creditCardLimit;
     int year;
     string status;
 
@@ -29,6 +30,8 @@ public:
     const string& getAccountType() const;
     int getYear() const;
     const string& getStatus() const;
+    int getCreditCardLimit() const;
+    void setCreditCardLimit(int creditCardLimit);
 };
 
 #endif // CLIENT_H

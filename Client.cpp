@@ -49,3 +49,11 @@ int Client::getYear() const {
 const string& Client::getStatus() const {
     return status;
 }
+
+int Client::getCreditCardLimit() const {
+    return creditCardLimit;
+}
+
+void Client::setCreditCardLimit(int creditCardLimit) {
+    Client::creditCardLimit = creditCardLimit;
+}

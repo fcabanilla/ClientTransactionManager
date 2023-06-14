@@ -101,14 +101,28 @@ void addClientMenu(ManagementSystem& ms) {
 
 bool isValidClient(Client client, ManagementSystem &ms) {
     // para que sea valido el cliente debe cumplir con esto:
-    // Los clientes con una antigüedad menor a 3 años no pueden ser de tipo “black”
-    if (client.getAccountType() == "black" && (2023 - client.getYear()) > 3) {
-        ms.addClient(client);
-        return true;
-    } else {
-        cout << "El cliente no es valido, ya que no tiene una antiguedad mayor a 3 años" << endl;
+    // - Los clientes con una antigüedad menor a 3 años no pueden ser de tipo “black”
+    // - Los clientes de tipo “oro” o más tienen acceso a una tarjeta de crédito, con un límite
+    //   mensual de $50000 para los de tipo “oro”, y de $250000 para los de tipo “black”.
+
+    if(client.getAccountType() == "black" && (2023 - client.getYear()) < 3){
+        cout << "El cliente no puede ser de tipo black con menos de 3 años de antiguedad" << endl;
         return false;
     }
+
+    if(client.getAccountType() == "oro" || client.getAccountType() == "black"){
+        cout << "El cliente tiene acceso a una tarjeta de credito" << endl;
+        if(client.getAccountType() == "oro"){
+            cout << "El limite mensual de la tarjeta de credito es de $50.000" << endl;
+            return true;
+        }
+        if(client.getAccountType() == "black"){
+            cout << "El limite mensual de la tarjeta de credito es de $250.000" << endl;
+            return true;
+        }
+    }
+    // si no se cumple ninguna de las condiciones anteriores, el cliente es valido (Cliente plata entra por aca)
+    return true;
 }
 
 void modifyData(ManagementSystem& system) {
