@@ -48,6 +48,23 @@ Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filen
     return transactions;
 }
 
+void ManagementSystem::saveTransactionsToFile(const Transaction *transactions, int transactionCount, const string &filename) {
+    ofstream file(filename, ios::app);
+    if (!file) {
+        cerr << "No se pudo abrir el archivo: " << filename << endl;
+        return;
+    }
+    for (int i = 0; i < transactionCount; ++i) {
+        file << transactions[i].getTransactionNumber() << "\t "
+             << transactions[i].getAmount() << "\t "
+             << transactions[i].getType() << "\t "
+             << transactions[i].getDay() << "\t "
+             << transactions[i].getMonth() << "\t "
+             << transactions[i].getYear() << "\n";
+    }
+    file.close();
+}
+
 Client* ManagementSystem::loadClientsFromFile(const string& filename, int& clientCount) {
     ifstream file(filename);
     if (!file) {

@@ -27,6 +27,18 @@ void testLoadTransactionFromFile() {
     }
 }
 
+void testSaveTransactionsToFile(){
+    ManagementSystem ms;
+    int transactionCount = 3;
+    static Transaction transactions[MAX_TRANSACTIONS];
+    transactions[0] = Transaction(4, 894, 'D', 1, 11, 2021);
+    transactions[1] = Transaction(5, 894, 'A', 12, 12, 2020);
+    transactions[2] = Transaction(6, 894, 'B', 21, 8, 2010);
+    ms.saveTransactionsToFile(transactions, transactionCount, "../transacciones.txt");
+    testLoadTransactionFromFile();
+
+}
+
 void testLoadClientsFromFile() {
     ManagementSystem ms;
     int clientCount = 0;
@@ -45,7 +57,7 @@ void testLoadClientsFromFile() {
 #include <windows.h>
 
 void clearScreen() {
-    cout << "\x1B[2J\x1B[H";
+    //cout << "\x1B[2J\x1B[H";
 }
 
 void addClient() {
@@ -129,6 +141,7 @@ void debugMenu(){
     do {
         cout << "1. Imprimir todas las Transacciones" << endl;
         cout << "2. Imprimir todos los Clientes" << endl;
+        cout << "3. Guardar Transacciones en archivo" << endl;
         cin >> option;
 
         switch (option) {
@@ -137,6 +150,9 @@ void debugMenu(){
                 break;
             case 2:
                 testLoadClientsFromFile();
+                break;
+            case 3:
+                testSaveTransactionsToFile();
                 break;
             default:
                 cout << "Opción incorrecta" << endl;
