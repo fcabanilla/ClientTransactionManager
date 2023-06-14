@@ -4,37 +4,48 @@
 
 #include "Client.h"
 
-#include <utility>
+using namespace std;
 
 Client::Client() = default;
-Client::Client(int clientNumber, std::string  name, std::string  lastName, std::string  type, int year, std::string  status):
-        clientNumber(clientNumber),
-        name(std::move(name)),
-        lastName(std::move(lastName)),
-        type(std::move(type)),
-        year(year),
-        status(std::move(status)) {}
+
+Client::Client(int clientNumber, string  name, string  lastName, string  type, int year){
+    this->clientNumber = clientNumber;
+    this->name = name;
+    this->lastName = lastName;
+    this->accountType = type;
+    this->year = year;
+    this->status = "Activo";
+}
+
+Client::Client(int clientNumber, string name, string lastName, string type, int year, string  status){
+    this->clientNumber = clientNumber;
+    this->name = name;
+    this->lastName = lastName;
+    this->accountType = type;
+    this->year = year;
+    this->status = status;
+}
 
 int Client::getClientNumber() const {
     return clientNumber;
 }
 
-const std::string& Client::getName() const {
+const string& Client::getName() const {
     return name;
 }
 
-const std::string& Client::getLastName() const {
+const string& Client::getLastName() const {
     return lastName;
 }
 
-const std::string& Client::getType() const {
-    return type;
+const string& Client::getAccountType() const {
+    return accountType;
 }
 
 int Client::getYear() const {
     return year;
 }
 
-const std::string& Client::getStatus() const {
+const string& Client::getStatus() const {
     return status;
 }

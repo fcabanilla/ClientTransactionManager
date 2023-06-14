@@ -113,7 +113,7 @@ void saveClientToFile(const Client &client, string filename) {
     file << client.getClientNumber()  << "\t"
          << client.getName()  << "\t"
          << client.getLastName()  << "\t"
-         << client.getType()  << "\t"
+         << client.getAccountType()  << "\t"
          << client.getYear()  << "\t"
          << client.getStatus() <<  "\n";
     file.close();
@@ -170,7 +170,7 @@ void ManagementSystem::showClient(Client client) {
     cout << "# Client Number:  " << client.getClientNumber() << "\t\t#"<<endl;
     cout << "# Nombre: " << client.getName() << "\t\t\t#"<<endl;
     cout << "# Apellido: " << client.getLastName() << "\t\t#"<<endl;
-    cout << "# Tipo: " << client.getType() << "\t\t\t#"<<endl;
+    cout << "# Tipo: " << client.getAccountType() << "\t\t\t#"<<endl;
     cout << "# Ano: " << client.getYear() << "\t\t\t#"<<endl;
     cout << "# Estado:\t" << client.getStatus() << "\t\t#"<<endl;
 }

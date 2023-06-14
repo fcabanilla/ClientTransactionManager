@@ -7,6 +7,8 @@
 #include "Transaction.h"
 #include "Client.h"
 
+void isValidClient(Client client, ManagementSystem &ms);
+
 using namespace std;
 
 //*********************************************
@@ -93,7 +95,21 @@ void addClientMenu(ManagementSystem& ms) {
     cin >> year;
 
     Client client = Client(clientNumber, name, lastName, accountType, year);
+    isValidClient(client, ms);
     ms.addClient(client);
+}
+
+void isValidClient(Client client, ManagementSystem &ms) {
+    // para que sea valido el cliente debe cumplir con esto:
+    // Los clientes con una antigüedad menor a 3 años no pueden ser de tipo “black”
+
+    if (client.getAccountType() == "black" && client.getYear() > 3) {
+        ms.addClient(client);
+    } else {
+        cout << "El cliente no es valido" << endl;
+    }
+
+
 }
 
 void modifyData(ManagementSystem& system) {

@@ -13,27 +13,20 @@ private:
     int clientNumber;
     string name;
     string lastName;
-    string type;
+    string accountType;
     int year;
     string status;
 
 public:
     Client();
-    Client(int clientNumber, string  name, string  lastName, string  type, int year, string status);
-    Client(int clientNumber, string  name, string  lastName, string  type, int year){
-        this->clientNumber = clientNumber;
-        this->name = name;
-        this->lastName = lastName;
-        this->type = type;
-        this->year = year;
-        this->status = "Activo";
-    }
+    Client(int clientNumber, string  name, string  lastName, string  accountType, int year, string status);
+    Client(int clientNumber, string  name, string  lastName, string  accountType, int year);
 
     // Getters and setters
     int getClientNumber() const;
     const string& getName() const;
     const string& getLastName() const;
-    const string& getType() const;
+    const string& getAccountType() const;
     int getYear() const;
     const string& getStatus() const;
 };
