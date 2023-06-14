@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "ManagementSystem.h"
+#include "ClientStatus.h"
 
 #define FILENAME_CLIENTS "../clientes.txt"
 #define FILENAME_TRANSACTIONS "../transacciones.txt"
@@ -167,19 +168,32 @@ void ManagementSystem::showAllTransactions(Transaction *transactions, int transa
 }
 
 void ManagementSystem::showClient(Client client) {
+    cout << "#################################" << endl;
     cout << "# Client Number:  " << client.getClientNumber() << "\t\t#"<<endl;
     cout << "# Nombre: " << client.getName() << "\t\t\t#"<<endl;
     cout << "# Apellido: " << client.getLastName() << "\t\t#"<<endl;
     cout << "# Tipo: " << client.getAccountType() << "\t\t\t#"<<endl;
     cout << "# Ano: " << client.getYear() << "\t\t\t#"<<endl;
     cout << "# Estado:\t" << client.getStatus() << "\t\t#"<<endl;
+    cout << "#################################" << endl << endl;
 }
 
-void ManagementSystem::showAllClients(Client *clients, int clientCount) {
+void ManagementSystem::showAllClients(Client *clients, int clientCount, ClientStatus option) {
     for (int i = 0; i < clientCount ; i++) {
-        cout << "#################################" << endl;
-        showClient (clients[i]);
-        cout << "#################################" << endl << endl;
+        switch (option) {
+            case ACTIVE:
+                if (clients[i].getStatus() == "activo")
+                    showClient(clients[i]);
+                break;
+            case INACTIVE:
+                if (clients[i].getStatus() == "baja")
+                    showClient(clients[i]);
+                break;
+            default:
+                showClient(clients[i]);
+        }
     }
 }
+
+
 

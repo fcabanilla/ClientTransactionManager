@@ -14,7 +14,7 @@ Client::Client(int clientNumber, string  name, string  lastName, string  type, i
     this->lastName = lastName;
     this->accountType = type;
     this->year = year;
-    this->status = "Activo";
+    this->status = "activo";
 }
 
 Client::Client(int clientNumber, string name, string lastName, string type, int year, string  status){

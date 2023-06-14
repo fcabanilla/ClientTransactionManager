@@ -5,6 +5,7 @@
 #include <vector>
 #include "Transaction.h"
 #include "Client.h"
+#include "ClientStatus.h"
 
 using namespace std;
 
@@ -45,7 +46,21 @@ public:
      * @param clients Un puntero al array de clientes.
      * @param clientCount El conteo de clientes.
      */
-    void showAllClients(Client* clients, int clientCount);
+    void showAllClients(Client* clients, int clientCount, ClientStatus option);
+
+    /**
+ * @brief Muestra todos los clientes.
+ * @param clients Un puntero al array de clientes.
+ * @param clientCount El conteo de clientes.
+ */
+    void showActiveClients(Client* clients, int clientCount);
+
+    /**
+ * @brief Muestra todos los clientes.
+ * @param clients Un puntero al array de clientes.
+ * @param clientCount El conteo de clientes.
+ */
+    void showInactiveClients(Client* clients, int clientCount);
 
     /**
      * @brief Obtiene todos los clientes en el sistema.

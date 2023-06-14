@@ -2,10 +2,11 @@
 #include <string>
 
 #include <windows.h>
-#include "ManagementSystem.h"
 
+#include "ManagementSystem.h"
 #include "Transaction.h"
 #include "Client.h"
+#include "ClientStatus.h"
 
 bool isValidClient(Client client, ManagementSystem &ms);
 
@@ -53,7 +54,7 @@ void testLoadClientsFromFile(ManagementSystem ms) {
         for (int i=0 ; i < clientCount ; i++){
             clients[i] = loadedClients[i];
         }
-        ms.showAllClients(clients,clientCount);
+        ms.showAllClients(clients, clientCount , ALL);
     }
 }
 
@@ -66,7 +67,9 @@ void showAllClients(ManagementSystem& ms){
         for (int i=0 ; i < clientCount ; i++){
             clients[i] = loadedClients[i];
         }
-        ms.showAllClients(clients,clientCount);
+        //ms.showAllClients(clients, clientCount, ALL);
+        ms.showAllClients(clients, clientCount, ACTIVE);
+        //ms.showAllClients(clients, clientCount, INACTIVE);
     }
 }
 //*********************************************
@@ -172,7 +175,6 @@ void consultations(ManagementSystem& system) {
                 consultClientByNumber(system);
                 break;
             case 2:
-                showAllClients(system);
                 showAllClients(system);
                 break;
             case 3:
