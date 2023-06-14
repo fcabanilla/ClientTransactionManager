@@ -105,6 +105,8 @@ public:
      */
     void saveTransactionsToFile(const Transaction *transactions, int transactionCount, const string &filename);
 
+    static void saveTransactionToFile(Transaction transaction, string filename);
+
     /**
      * @brief Obtiene transacciones por un cliente.
      * @param clientNumber El número del cliente.
@@ -177,6 +179,7 @@ public:
     void showClient(Client client);
 
     Client *loadClientsFromFile(const string &filename, int &clientCount);
+
 
 };
 

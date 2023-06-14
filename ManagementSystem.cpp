@@ -3,6 +3,12 @@
 #include <sstream>
 
 #include "ManagementSystem.h"
+
+#define FILENAME_CLIENTS "../clientes.txt"
+#define FILENAME_TRANSACTIONS "../transacciones.txt"
+
+void saveClientToFile(const Client &client, string filename);
+
 using namespace std;
 
 ManagementSystem::ManagementSystem() {
@@ -10,6 +16,10 @@ ManagementSystem::ManagementSystem() {
     transactionCount = 0;
 }
 // Asume que MAX_TRANSACTIONS y MAX_CLIENTS son constantes que definen el número máximo de transacciones y clientes
+
+/*
+ * Transactions
+ */
 
 Transaction* ManagementSystem::loadTransactionsFromFile(const std::string& filename, int& transactionCount) {
     static Transaction transactions[MAX_TRANSACTIONS];
@@ -65,6 +75,45 @@ void ManagementSystem::saveTransactionsToFile(const Transaction *transactions, i
     file.close();
 }
 
+void ManagementSystem::saveTransactionToFile(Transaction transaction, string filename) {
+    ofstream file(filename, ios::app);
+    if (!file) {
+        cerr << "No se pudo abrir el archivo: " << filename << endl;
+        return;
+    }
+    file << transaction.getTransactionNumber() << "\t"
+         << transaction.getAmount() << "\t"
+         << transaction.getType() << "\t"
+         << transaction.getDay() << "\t"
+         << transaction.getMonth() << "\t"
+         << transaction.getYear() << "\n";
+    file.close();
+
+}
+
+/*
+ * CLIENTS
+ */
+void ManagementSystem::addClient(const Client &client){
+    saveClientToFile(client, FILENAME_CLIENTS);
+
+}
+
+void saveClientToFile(const Client &client, string filename) {
+    ofstream file(filename, ios::app);
+    if (!file) {
+        cerr << "No se pudo abrir el archivo: " << filename << endl;
+        return;
+    }
+    file << client.getClientNumber()  << "\t"
+         << client.getName()  << "\t"
+         << client.getLastName()  << "\t"
+         << client.getType()  << "\t"
+         << client.getYear()  << "\t"
+         << client.getStatus() <<  "\n";
+    file.close();
+}
+
 Client* ManagementSystem::loadClientsFromFile(const string& filename, int& clientCount) {
     ifstream file(filename);
     if (!file) {
@@ -90,6 +139,10 @@ Client* ManagementSystem::loadClientsFromFile(const string& filename, int& clien
     }
     return clients;
 }
+
+/*
+ * SHOWING METHODS
+ */
 
 void ManagementSystem::showTransaction(Transaction transaction) {
     cout << "# Transaction number:  " << transaction.getTransactionNumber() << "\t#"<<endl;
@@ -124,3 +177,4 @@ void ManagementSystem::showAllClients(Client *clients, int clientCount) {
         cout << "#################################" << endl << endl;
     }
 }
+

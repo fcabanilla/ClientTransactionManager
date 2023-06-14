@@ -8,8 +8,6 @@
 #include "Client.h"
 
 using namespace std;
-//ManagementSystem ms;
-
 
 //*********************************************
 // Tests para probar las funciones de ManagementSystem
@@ -39,6 +37,14 @@ void testSaveTransactionsToFile(){
 
 }
 
+void testSaveTransactionToFile(){
+    ManagementSystem ms;
+    static Transaction transaction;
+    transaction = Transaction(10, 1023, 'A', 28, 7, 2011);
+    ms.saveTransactionToFile(transaction, "../transacciones.txt");
+    testLoadTransactionFromFile();
+}
+
 void testLoadClientsFromFile() {
     ManagementSystem ms;
     int clientCount = 0;
@@ -60,8 +66,28 @@ void clearScreen() {
     //cout << "\x1B[2J\x1B[H";
 }
 
-void addClient() {
+void addClientMenu() {
+    cout << "Ejecutando: Agregar cliente..." << endl;
+    ManagementSystem ms;
+    // Crear un dialogo en consola para ingresar los datos necesarios para el cliente
+    cout << "Ingrese el número de cliente: ";
+    int clientNumber;
+    cin >> clientNumber;
+    cout << "Ingrese el nombre del cliente: ";
+    string name;
+    cin >> name;
+    cout << "Ingrese el apellido del cliente: ";
+    string lastName;
+    cin >> lastName;
+    cout << "Ingrese el tipo de cuenta del cliente: ";
+    string accountType;
+    cin >> accountType;
+    cout << "Ingrese el año de apertura de la cuenta: ";
+    int year;
+    cin >> year;
 
+    Client client = Client(17, "Juan", "Perez", "oro", 2021);
+    ms.addClient(client);
 }
 
 void modifyData(ManagementSystem& system) {
@@ -142,6 +168,7 @@ void debugMenu(){
         cout << "1. Imprimir todas las Transacciones" << endl;
         cout << "2. Imprimir todos los Clientes" << endl;
         cout << "3. Guardar Transacciones en archivo" << endl;
+        cout << "4. Guardar Transacción en archivo" << endl;
         cin >> option;
 
         switch (option) {
@@ -153,6 +180,9 @@ void debugMenu(){
                 break;
             case 3:
                 testSaveTransactionsToFile();
+                break;
+            case 4:
+                testSaveTransactionToFile();
                 break;
             default:
                 cout << "Opción incorrecta" << endl;
@@ -179,7 +209,7 @@ int main() {
 
         switch (option) {
             case 1:
-                addClient();
+                addClientMenu();
                 break;
             case 2:
                 modifyData(system);

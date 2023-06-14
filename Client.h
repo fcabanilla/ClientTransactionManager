@@ -6,26 +6,36 @@
 
 #include <string>
 
+using namespace std;
+
 class Client {
 private:
     int clientNumber;
-    std::string name;
-    std::string lastName;
-    std::string type;
+    string name;
+    string lastName;
+    string type;
     int year;
-    std::string status;
+    string status;
 
 public:
     Client();
-    Client(int clientNumber, std::string  name, std::string  lastName, std::string  type, int year, std::string  status);
+    Client(int clientNumber, string  name, string  lastName, string  type, int year, string status);
+    Client(int clientNumber, string  name, string  lastName, string  type, int year){
+        this->clientNumber = clientNumber;
+        this->name = name;
+        this->lastName = lastName;
+        this->type = type;
+        this->year = year;
+        this->status = "Activo";
+    }
 
     // Getters and setters
     int getClientNumber() const;
-    const std::string& getName() const;
-    const std::string& getLastName() const;
-    const std::string& getType() const;
+    const string& getName() const;
+    const string& getLastName() const;
+    const string& getType() const;
     int getYear() const;
-    const std::string& getStatus() const;
+    const string& getStatus() const;
 };
 
 #endif // CLIENT_H
