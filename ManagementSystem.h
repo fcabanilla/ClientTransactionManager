@@ -41,10 +41,18 @@ public:
     void removeClient(int clientNumber);
 
     /**
+     * @brief Muestra todos los clientes.
+     * @param clients Un puntero al array de clientes.
+     * @param clientCount El conteo de clientes.
+     */
+    void showAllClients(Client* clients, int clientCount);
+
+    /**
      * @brief Obtiene todos los clientes en el sistema.
+     * @param clientCount Una referencia al conteo de clientes.
      * @return Un puntero al array de clientes.
      */
-    const Client *getClients() const;
+    Client * getAllClients(int& clientCount);
 
     /**
      * @brief Obtiene el conteo actual de clientes.
@@ -64,12 +72,6 @@ public:
      * @return Un puntero al cliente.
      */
     Client *getClientByNumber(int clientNumber);
-
-    /**
-     * @brief Obtiene todos los clientes en el sistema.
-     * @return Un vector de todos los clientes.
-     */
-    vector<Client> getAllClients();
 
     /**
      * @brief Obtiene todas las transacciones en el sistema.
@@ -165,12 +167,6 @@ public:
      */
     void showTransaction(Transaction transaction);
 
-    /**
-     * @brief Muestra todos los clientes.
-     * @param clients Un puntero al array de clientes.
-     * @param clientCount El conteo de clientes.
-     */
-    void showAllClients(Client* clients, int clientCount);
 
     /**
      * @brief Muestra un cliente.

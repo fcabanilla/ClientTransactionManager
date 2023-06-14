@@ -11,8 +11,7 @@ using namespace std;
 
 //*********************************************
 // Tests para probar las funciones de ManagementSystem
-void testLoadTransactionFromFile() {
-    ManagementSystem ms;
+void testLoadTransactionFromFile(ManagementSystem ms) {
     int transactionCount = 0;
     static Transaction transactions[MAX_TRANSACTIONS];
     Transaction* loadedTransactions = ms.loadTransactionsFromFile("../transacciones.txt", transactionCount);
@@ -25,28 +24,25 @@ void testLoadTransactionFromFile() {
     }
 }
 
-void testSaveTransactionsToFile(){
-    ManagementSystem ms;
+void testSaveTransactionsToFile(ManagementSystem ms){
     int transactionCount = 3;
     static Transaction transactions[MAX_TRANSACTIONS];
     transactions[0] = Transaction(4, 894, 'D', 1, 11, 2021);
     transactions[1] = Transaction(5, 894, 'A', 12, 12, 2020);
     transactions[2] = Transaction(6, 894, 'B', 21, 8, 2010);
     ms.saveTransactionsToFile(transactions, transactionCount, "../transacciones.txt");
-    testLoadTransactionFromFile();
+    testLoadTransactionFromFile(ms);
 
 }
 
-void testSaveTransactionToFile(){
-    ManagementSystem ms;
+void testSaveTransactionToFile(ManagementSystem ms){
     static Transaction transaction;
     transaction = Transaction(10, 1023, 'A', 28, 7, 2011);
     ms.saveTransactionToFile(transaction, "../transacciones.txt");
-    testLoadTransactionFromFile();
+    testLoadTransactionFromFile(ms);
 }
 
-void testLoadClientsFromFile() {
-    ManagementSystem ms;
+void testLoadClientsFromFile(ManagementSystem ms) {
     int clientCount = 0;
     static Client clients[MAX_CLIENTS];
     Client* loadedClients = ms.loadClientsFromFile("../clientes.txt",clientCount);
@@ -58,17 +54,27 @@ void testLoadClientsFromFile() {
         ms.showAllClients(clients,clientCount);
     }
 }
-//*********************************************
 
-#include <windows.h>
+void showAllClients(ManagementSystem& ms){
+    int clientCount = 0;
+    static Client clients[MAX_CLIENTS];
+    Client* loadedClients = ms.getAllClients( clientCount);
+
+    if (loadedClients != nullptr){
+        for (int i=0 ; i < clientCount ; i++){
+            clients[i] = loadedClients[i];
+        }
+        ms.showAllClients(clients,clientCount);
+    }
+}
+//*********************************************
 
 void clearScreen() {
     //cout << "\x1B[2J\x1B[H";
 }
 
-void addClientMenu() {
+void addClientMenu(ManagementSystem& ms) {
     cout << "Ejecutando: Agregar cliente..." << endl;
-    ManagementSystem ms;
     // Crear un dialogo en consola para ingresar los datos necesarios para el cliente
     cout << "Ingrese el número de cliente: ";
     int clientNumber;
@@ -86,7 +92,7 @@ void addClientMenu() {
     int year;
     cin >> year;
 
-    Client client = Client(17, "Juan", "Perez", "oro", 2021);
+    Client client = Client(clientNumber, name, lastName, accountType, year);
     ms.addClient(client);
 }
 
@@ -108,11 +114,6 @@ void performDeposit(ManagementSystem& system) {
 void consultClientByNumber(ManagementSystem& system) {
     cout << "Ejecutando: Consultar cliente por número de cliente..." << endl;
     // Aquí iría el código para consultar un cliente por su número.
-}
-
-void showAllClients(ManagementSystem& system) {
-    cout << "Ejecutando: Mostrar todos los clientes..." << endl;
-    // Aquí iría el código para mostrar todos los clientes.
 }
 
 void showTransactionsByClient(ManagementSystem& system) {
@@ -143,6 +144,7 @@ void consultations(ManagementSystem& system) {
                 break;
             case 2:
                 showAllClients(system);
+                showAllClients(system);
                 break;
             case 3:
                 showTransactionsByClient(system);
@@ -161,7 +163,7 @@ void consultations(ManagementSystem& system) {
     } while (option != 5);
 }
 
-void debugMenu(){
+void debugMenu(ManagementSystem& system){
     int option;
     clearScreen();
     do {
@@ -173,16 +175,16 @@ void debugMenu(){
 
         switch (option) {
             case 1:
-                testLoadTransactionFromFile();
+                testLoadTransactionFromFile(system);
                 break;
             case 2:
-                testLoadClientsFromFile();
+                testLoadClientsFromFile(system);
                 break;
             case 3:
-                testSaveTransactionsToFile();
+                testSaveTransactionsToFile(system);
                 break;
             case 4:
-                testSaveTransactionToFile();
+                testSaveTransactionToFile(system);
                 break;
             default:
                 cout << "Opción incorrecta" << endl;
@@ -209,7 +211,7 @@ int main() {
 
         switch (option) {
             case 1:
-                addClientMenu();
+                addClientMenu(system);
                 break;
             case 2:
                 modifyData(system);
@@ -227,7 +229,7 @@ int main() {
                 cout << "Exiting..." << endl;
                 break;
             case 0: // Debug menu
-                debugMenu();
+                debugMenu(system);
                 break;
             default:
                 cout << "Incorrect option" << endl;

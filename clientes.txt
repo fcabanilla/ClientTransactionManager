@@ -1,3 +1,5 @@
 1   Juan    Degiovanni  plata   2003    baja
 2   Pedro   Laciar  oro 2020    activo
 3   Julio   Gutierrez   black   2007  activo
+17	Juan	Perez	oro	2021	Activo
+5	Vir	Rodriguez	black	2015	Activo

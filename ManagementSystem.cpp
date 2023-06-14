@@ -65,11 +65,11 @@ void ManagementSystem::saveTransactionsToFile(const Transaction *transactions, i
         return;
     }
     for (int i = 0; i < transactionCount; ++i) {
-        file << transactions[i].getTransactionNumber() << "\t "
-             << transactions[i].getAmount() << "\t "
-             << transactions[i].getType() << "\t "
-             << transactions[i].getDay() << "\t "
-             << transactions[i].getMonth() << "\t "
+        file << transactions[i].getTransactionNumber() << "\t"
+             << transactions[i].getAmount() << "\t"
+             << transactions[i].getType() << "\t"
+             << transactions[i].getDay() << "\t"
+             << transactions[i].getMonth() << "\t"
              << transactions[i].getYear() << "\n";
     }
     file.close();
@@ -94,10 +94,15 @@ void ManagementSystem::saveTransactionToFile(Transaction transaction, string fil
 /*
  * CLIENTS
  */
+
 void ManagementSystem::addClient(const Client &client){
     saveClientToFile(client, FILENAME_CLIENTS);
-
 }
+
+Client * ManagementSystem::getAllClients(int& clientCount) {
+    return loadClientsFromFile(FILENAME_CLIENTS, clientCount);
+}
+
 
 void saveClientToFile(const Client &client, string filename) {
     ofstream file(filename, ios::app);
