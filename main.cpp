@@ -35,7 +35,6 @@ void testSaveTransactionsToFile(ManagementSystem ms){
     transactions[2] = Transaction(6, 894, 'B', 21, 8, 2010);
     ms.saveTransactionsToFile(transactions, transactionCount, "../transacciones.txt");
     testLoadTransactionFromFile(ms);
-
 }
 
 void testSaveTransactionToFile(ManagementSystem ms){
@@ -58,6 +57,8 @@ void testLoadClientsFromFile(ManagementSystem ms) {
     }
 }
 
+//*********************************************
+
 void showAllClients(ManagementSystem& ms){
     int clientCount = 0;
     static Client clients[MAX_CLIENTS];
@@ -72,7 +73,6 @@ void showAllClients(ManagementSystem& ms){
         //ms.showAllClients(clients, clientCount, INACTIVE);
     }
 }
-//*********************************************
 
 void clearScreen() {
     //cout << "\x1B[2J\x1B[H";
@@ -146,6 +146,10 @@ void performDeposit(ManagementSystem& system) {
 void consultClientByNumber(ManagementSystem& system) {
     cout << "Ejecutando: Consultar cliente por número de cliente..." << endl;
     // Aquí iría el código para consultar un cliente por su número.
+    cout<< "Ingrese el numero de cliente: ";
+    int clientNumber;
+    cin >> clientNumber;
+    system.showClient(system.getClientByNumber(clientNumber));
 }
 
 void showTransactionsByClient(ManagementSystem& system) {

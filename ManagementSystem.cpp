@@ -141,6 +141,18 @@ Client* ManagementSystem::loadClientsFromFile(const string& filename, int& clien
     return clients;
 }
 
+Client ManagementSystem::getClientByNumber(int clientNumber) {
+    Client* loadedClients = loadClientsFromFile(FILENAME_CLIENTS,clientCount);
+    for (int i = 0; i < clientCount; ++i) {
+        if (loadedClients[i].getClientNumber() == clientNumber) {
+            return loadedClients[i];
+        }
+    }
+    cerr << "No se encontró el cliente con número: " << clientNumber << endl;
+
+    return Client();
+}
+
 /*
  * SHOWING METHODS
  */

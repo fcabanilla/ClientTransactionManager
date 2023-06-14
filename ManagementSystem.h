@@ -24,6 +24,10 @@ private:
     int transactionCount; ///< Contador de transacciones actuales.
 
 public:
+    ManagementSystem(){
+        clientCount = 0;
+        transactionCount = 0;
+    }
 
     /**
      * @brief Añade un cliente al sistema.
@@ -58,6 +62,18 @@ public:
      * @return Un puntero al array de clientes.
      */
     Client * getAllClients(int& clientCount);
+
+    /**
+     * @brief Devuelve Cliente por número de cliente
+     * @param client El cliente a buscar por numero
+     * @param clientNumber Numero de cliente para buscar.
+     * @return Un puntero al cliente.
+     */
+    Client getClientByNumber(int clientNumber);
+
+    /*
+     *  Transacciones
+     */
 
     /**
      * @brief Muestra todas las transacciones.
