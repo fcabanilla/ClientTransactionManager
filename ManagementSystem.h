@@ -11,7 +11,6 @@ using namespace std;
 
 #define MAX_CLIENTS 100
 #define MAX_TRANSACTIONS 1000
-
 /**
  * @class ManagementSystem
  * @brief Clase para gestionar clientes y transacciones.
@@ -65,14 +64,14 @@ public:
 
     /**
      * @brief Devuelve Cliente por número de cliente
-     * @param client El cliente a buscar por numero
+     * @param client El cliente a buscar por número
      * @param clientNumber Numero de cliente para buscar.
      * @return Un puntero al cliente.
      */
     Client getClientByNumber(int clientNumber);
 
-    /*
-     *  Transacciones
+    /**
+     *   Transacciones
      */
 
     /**
@@ -106,7 +105,7 @@ public:
 
     static void saveTransactionToFile(Transaction transaction, string filename);
 
-    /*
+    /**
      * All Getters and Setters
      */
 
@@ -122,5 +121,6 @@ public:
 
     void setTransactionCount(int transactionCount);
 };
+
 
 #endif // MANAGEMENTSYSTEM_H

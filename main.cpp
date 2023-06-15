@@ -98,6 +98,7 @@ void addClientMenu(ManagementSystem& ms) {
     cin >> year;
 
     Client client = Client(clientNumber, name, lastName, accountType, year);
+
     if (isValidClient(client, ms))
         ms.addClient(client);
 }
